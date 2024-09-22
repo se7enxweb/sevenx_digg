@@ -1,0 +1,24 @@
+{
+    "name": "se7enxweb/sevenx_digg",
+    "description": "7x Digg is a simple eZ Publish Platform (Legacy) datatype extension which replaces the ezoption datatype. Great for advanced developers!",
+    "type": "ezpublish-legacy-extension",
+    "keywords": [ "eZ Publish", "eZ Publish Legacy", "eZ Publish Platform", "kernel override", "class", "ezdiggstorageengine", "extension", "vote", "digg" ],
+    "homepage": "https://github.com/se7enxweb/sevenx_digg",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name" : "7x",
+            "homepage": "https://se7enx.com",
+            "email": "info@se7enx.com",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.0.0",
+        "se7enxweb/ezpublish-legacy-installer": "*"
+    },
+    "extra": {
+        "ezpublish-legacy-extension-name": "sevenx_digg"
+    }
+}

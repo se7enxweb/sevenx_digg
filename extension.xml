@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<software>
+    <metadata>
+        <name>7x Digg</name>
+        <version>0.8.3</version>
+        <copyright>Copyright (C) 1999 - 2023 7x</copyright>
+        <license>GNU General Public License</license>
+        <info_url>https://github.com/se7enxweb/sevenx_digg</info_url>
+    </metadata>
+</software>
