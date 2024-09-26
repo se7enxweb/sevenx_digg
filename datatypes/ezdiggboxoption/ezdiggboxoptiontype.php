@@ -1,6 +1,6 @@
 <?php
 /**
- * File containing the eZDiggStorageEngineType class.
+ * File containing the eZDiggBoxOptionType class.
  *
  * @copyright Copyright (C) 7x. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
@@ -9,17 +9,17 @@
  */
 
 /*!
-  \class eZDiggStorageEngineType ezdiggstorageenginetype.php
+  \class eZDiggBoxOptionType ezdiggboxoptiontype.php
   \ingroup eZDatatype
   \brief Stores option values
 
 */
 
-class eZDiggStorageEngineType extends eZDataType
+class eZDiggBoxOptionType extends eZDataType
 {
-    const DEFAULT_NAME_VARIABLE = "_ezdiggstorageengine_default_name_";
+    const DEFAULT_NAME_VARIABLE = "_ezdiggboxoption_default_name_";
 
-    const DATA_TYPE_STRING = "ezdiggstorageengine";
+    const DATA_TYPE_STRING = "ezdiggboxoption";
 
     public function __construct()
     {
@@ -129,7 +129,7 @@ class eZDiggStorageEngineType extends eZDataType
     */
     function objectAttributeContent( $contentObjectAttribute )
     {
-        $option = new eZDiggStorageEngine( "" );
+        $option = new eZDiggBoxOption( "" );
 
         $option->decodeXML( $contentObjectAttribute->attribute( "data_text" ) );
 
@@ -163,7 +163,7 @@ class eZDiggStorageEngineType extends eZDataType
         else
             $optionAdditionalPriceArray = array();
 
-        $option = new eZDiggStorageEngine( $optionName );
+        $option = new eZDiggBoxOption( $optionName );
 
         $i = 0;
         foreach ( $optionIDArray as $id )
@@ -212,7 +212,7 @@ class eZDiggStorageEngineType extends eZDataType
                         $option->insertOption( array(), $beforeID );
                         $contentObjectAttribute->setContent( $option );
                         $contentObjectAttribute->store();
-                        $option = new eZDiggStorageEngine( "" );
+                        $option = new eZDiggBoxOption( "" );
                         $option->decodeXML( $contentObjectAttribute->attribute( "data_text" ) );
                         $contentObjectAttribute->setContent( $option );
                         return;
@@ -230,13 +230,13 @@ class eZDiggStorageEngineType extends eZDataType
                 $option->removeOptions( $array_remove );
                 $contentObjectAttribute->setContent( $option );
                 $contentObjectAttribute->store();
-                $option = new eZDiggStorageEngine( "" );
+                $option = new eZDiggBoxOption( "" );
                 $option->decodeXML( $contentObjectAttribute->attribute( "data_text" ) );
                 $contentObjectAttribute->setContent( $option );
             }break;
             default :
             {
-                eZDebug::writeError( "Unknown custom HTTP action: " . $action, "eZDiggStorageEngineType" );
+                eZDebug::writeError( "Unknown custom HTTP action: " . $action, "eZDiggBoxOptionType" );
             }break;
         }
     }
@@ -291,7 +291,7 @@ class eZDiggStorageEngineType extends eZDataType
             $contentClassAttribute = $contentObjectAttribute->contentClassAttribute();
             if ( !$option )
             {
-                $option = new eZDiggStorageEngine( $contentClassAttribute->attribute( 'data_text1' ) );
+                $option = new eZDiggBoxOption( $contentClassAttribute->attribute( 'data_text1' ) );
             }
             else
             {
@@ -299,6 +299,16 @@ class eZDiggStorageEngineType extends eZDataType
             }
             $contentObjectAttribute->setAttribute( "data_text", $option->xmlString() );
             $contentObjectAttribute->setContent( $option );
+
+	    $option = new eZDiggBoxOption( "Diggs" );
+                        // 7x : create digg storage as option
+                        $option->addOption( array( 'value' => 'digg',
+                                       'additional_price' => 0 ) );
+                        // 7x : create digg storage as option
+                        $option->addOption( array( 'value' => 'undigg',
+                                       'additional_price' => 0 ) );
+                        $contentObjectAttribute->setContent( $option );
+                        $contentObjectAttribute->store();
         }
         else
         {
@@ -323,7 +333,7 @@ class eZDiggStorageEngineType extends eZDataType
                         $contentObjectAttribute->setContent( $option );
                         $contentObjectAttribute->store();
 			
-                        $option = new eZDiggStorageEngine( "Diggs" );
+                        $option = new eZDiggBoxOption( "Diggs" );
 			// 7x : create digg storage as option
 			$option->addOption( array( 'value' => 'digg',
                                        'additional_price' => 0 ) );
@@ -385,7 +395,7 @@ class eZDiggStorageEngineType extends eZDataType
 
         $optionArray = eZStringUtils::explodeStr( $string, '|' );
 
-        $option = new eZDiggStorageEngine( "" );
+        $option = new eZDiggBoxOption( "" );
 
         $option->OptionCount = 0;
         $option->Options = array();
@@ -435,7 +445,7 @@ class eZDiggStorageEngineType extends eZDataType
     function unserializeContentObjectAttribute( $package, $objectAttribute, $attributeNode )
     {
         $xmlString = '';
-        $optionNode = $attributeNode->getElementsByTagName( 'ezdiggstorageengine' )->item( 0 );
+        $optionNode = $attributeNode->getElementsByTagName( 'ezdiggboxoption' )->item( 0 );
 
         if ( $optionNode )
         {
@@ -472,7 +482,7 @@ class eZDiggStorageEngineType extends eZDataType
 
     function batchInitializeObjectAttributeData( $classAttribute )
     {
-        $option = new eZDiggStorageEngine( $classAttribute->attribute( 'data_text1' ) );
+        $option = new eZDiggBoxOption( $classAttribute->attribute( 'data_text1' ) );
         $db = eZDB::instance();
         return array( 'data_text' =>  "'" . $db->escapeString( $option->xmlString() ) . "'" );
     }
@@ -514,6 +524,6 @@ class eZDiggStorageEngineType extends eZDataType
 
 }
 
-eZDataType::register( eZDiggStorageEngineType::DATA_TYPE_STRING, "eZDiggStorageEngineType" );
+eZDataType::register( eZDiggBoxOptionType::DATA_TYPE_STRING, "eZDiggBoxOptionType" );
 
 ?>

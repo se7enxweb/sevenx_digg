@@ -1,6 +1,6 @@
 <?php
 /**
- * File containing the eZDiggStorageEngine class.
+ * File containing the eZDiggBoxOption class.
  *
  * @copyright Copyright (C) eZ Systems AS. All rights reserved.
  * @license For full copyright and license information view LICENSE file distributed with this source code.
@@ -9,13 +9,13 @@
  */
 
 /*!
-  \class eZDiggStorageEngine ezdiggstorageengine.php
+  \class eZDiggBoxOption ezdiggboxoption.php
   \ingroup eZDatatype
-  \brief eZDiggStorageEngine handles option set datatypes
+  \brief eZDiggBoxOption handles option set datatypes
 
   \code
 
-  $option = new eZDiggStorageEngine( "Colour" );
+  $option = new eZDiggBoxOption( "Colour" );
   $option->addValue( "Red" );
   $option->addValue( "Green" );
 
@@ -25,7 +25,7 @@
   \endcode
 */
 
-class eZDiggStorageEngine
+class eZDiggBoxOption
 {
     /**
      * Constructor
@@ -159,7 +159,7 @@ class eZDiggStorageEngine
     {
         $doc = new DOMDocument( '1.0', 'utf-8' );
 
-        $root = $doc->createElement( "ezoption" );
+        $root = $doc->createElement( "ezdiggboxoption" );
         $doc->appendChild( $root );
 
         $name = $doc->createElement( "name" );

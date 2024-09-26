@@ -2,6 +2,6 @@
 
 [DataTypeSettings]
 ExtensionDirectories[]=sevenx_digg
-AvailableDataTypes[]=sevenx_digg
+AvailableDataTypes[]=ezdiggboxoption
 
 */ ?>
