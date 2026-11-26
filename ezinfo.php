@@ -13,7 +13,7 @@ class sevenx_diggInfo
     {
         return array(
             'Name' => "<a href='https://github.com/se7enxweb/sevenx_digg'>7x Digg</a>",
-            'Version' => "0.8.3",
+            'Version' => "1.1.1",
             'Copyright' => "Copyright (C) 1999 - 2024 <a href='https://se7enx.com'>7x</a>",
             'Author' => "7x",
             'License' => "GNU General Public License"
